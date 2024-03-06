@@ -21,15 +21,17 @@ jobs:
     timeout-minutes: 10
     defaults:
       run:
-        working-directory: web
+        working-directory:  docker-simple-cicd-demo/web
     
     steps:
       - uses: actions/checkout@v3
 
+      - name: Create web directory if not exists
+        run: mkdir -p docker-simple-cicd-demo/web
+
       - name: Build an Image and Run Tests
         run: |
-          cd docker-simple-cicd-demo
-          cd web
+          cd docker-simple-cicd-demo/web
           docker image build --target production -t temp_web_image_name:latest --build-arg REACT_APP_API_SERVER=/api .
 
       - name: Configure AWS credentials
@@ -57,15 +59,17 @@ jobs:
     timeout-minutes: 10
     defaults:
       run:
-        working-directory: api
+        working-directory: docker-simple-cicd-demo/api
   
     steps:
       - uses: actions/checkout@v3
 
+       - name: Create api directory if not exists
+         run: mkdir -p docker-simple-cicd-demo/api
+
       - name: Build an Image and Run Tests
         run: |
-          cd docker-simple-cicd-demo
-          cd api
+          cd docker-simple-cicd-demo/api
           docker image build --target production -t temp_api_image_name:latest .
 
       - name: Configure AWS credentials
