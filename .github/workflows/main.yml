@@ -28,6 +28,8 @@ jobs:
 
       - name: Build an Image and Run Tests
         run: |
+          cd docker-simple-cicd-demo
+          cd web
           docker image build --target production -t temp_web_image_name:latest --build-arg REACT_APP_API_SERVER=/api .
 
       - name: Configure AWS credentials
@@ -62,6 +64,8 @@ jobs:
 
       - name: Build an Image and Run Tests
         run: |
+          cd docker-simple-cicd-demo
+          cd api
           docker image build --target production -t temp_api_image_name:latest .
 
       - name: Configure AWS credentials
