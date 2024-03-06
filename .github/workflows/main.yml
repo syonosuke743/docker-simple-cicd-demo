@@ -64,8 +64,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-       - name: Create api directory if not exists
-         run: mkdir -p docker-simple-cicd-demo/api
+      - name: Create api directory if not exists
+        run: mkdir -p docker-simple-cicd-demo/api
 
       - name: Build an Image and Run Tests
         run: |
